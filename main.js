@@ -5,6 +5,6 @@ client.on('ready', () => {
     client.user.setActivity('https://git.io/d.js-heroku', {type: 'WATCHING'});
 });
 
-client.on('message', msg => "hi");
+client.on('message', msg => message.reply('Hey, I\'m a reply!'));
 
 client.login(process.env.token);
