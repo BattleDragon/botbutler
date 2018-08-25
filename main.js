@@ -3,7 +3,7 @@ const client = new Discord.Client();
 client.login(process.env.token);
 
 client.on('ready', () => {
-    client.user.setActivity('https://git.io/d.js-heroku', {type: 'WATCHING'});
+    client.user.setActivity('you...', {type: 'WATCHING'});
 });
 
 client.on('voiceStateUpdate', function(oldMemberState, newMemberState){
