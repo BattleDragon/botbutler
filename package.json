@@ -4,8 +4,8 @@
     "description": "",
     "main": "main.js",
     "engines": {
-        "node": "8.x",
-        "npm": "*"
+        "node": "8.7.0",
+        "npm": "5.4.2"
     },
     "scripts": {
         "start": "node main.js"
