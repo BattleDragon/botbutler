@@ -3,8 +3,16 @@
     "version": "1.0.0",
     "description": "",
     "main": "main.js",
+    "engines": {
+        "node": "8.x",
+        "npm": "*"
+    },
     "scripts": {
-      "start": "node main.js"
+        "start": "node main.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BattleDragon/botbutler.git"
     },
     "author": "",
     "license": "ISC",
@@ -12,4 +20,4 @@
       "discord.js": "^11.4.2",
       "discord.js-commando": "^0.10.0",
     }
-  }
+}
