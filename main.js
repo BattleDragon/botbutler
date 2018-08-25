@@ -1,4 +1,4 @@
-const Discord = require('commando.js');
+const Discord = require('discord.js-commando');
 const client = new Discord.Client();
 
 client.on('ready', () => {
