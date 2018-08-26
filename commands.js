@@ -1,11 +1,11 @@
-client.on("message", async message => { 
-    if (message.author.id === client.user.id) { return; } // Ignore self
+global.client.on("message", async message => { 
+    if (message.author.id === global.client.user.id) { return; } // Ignore self
     if (message.channel.type === 'dm') { return; } //Optionally handle direct messages 
-    if (message.content.indexOf("<@"+client.user.id) === 0 || message.content.indexOf("<@!"+client.user.id) === 0) { // Catch @Mentions
-        return message.channel.send(`Use \`${config.prefix}\` to interact with me.`); //help people learn your prefix
+    if (message.content.indexOf("<@"+global.client.user.id) === 0 || message.content.indexOf("<@!"+global.client.user.id) === 0) { // Catch @Mentions
+        return message.channel.send(`Use \`${global.config.prefix}\` to interact with me.`); //help people learn your prefix
     } 
-    else if (message.content.indexOf(config.prefix) === 0) { // Message starts with your prefix        
-        let msg = message.content.slice(config.prefix.length); // slice of the prefix on the message
+    else if (message.content.indexOf(global.config.prefix) === 0) { // Message starts with your prefix        
+        let msg = message.content.slice(global.config.prefix.length); // slice of the prefix on the message
         let args = msg.split(" "); // break the message into part by spaces
         let cmd = args[0].toLowerCase(); // set the first word as the command in lowercase just in case
         args.shift(); // delete the first word from the args
@@ -13,8 +13,8 @@ client.on("message", async message => {
             message.channel.send('pong!');   
             return;
         }
-        else if (cmd === "eval" && message.author.id === config.owner) { // < checks the message author's id to yours in config.json.
-            if(message.author.id !== config.owner) return;
+        else if (cmd === "eval" && message.author.id === global.config.owner) { // < checks the message author's id to yours in config.json.
+            if(message.author.id !== global.config.owner) return;
             try { let evaled = eval(args.join(" ")); } 
             catch (err) { message.channel.send(`\`\`\`xl\n${err}\n\`\`\``); }
         }
