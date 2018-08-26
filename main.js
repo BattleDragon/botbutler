@@ -1,6 +1,9 @@
-const config = require('./config.json');
-const Discord = require('discord.js');
-const client = new Discord.Client();
+global.util = require('util');
+global.config = require('./config.json');
+global.Discord = require('discord.js');
+global.client = new Discord.Client();
+const functions = require('functions.js');
+
 client.login(process.env.token);
 
 client.on('ready', () => {
@@ -18,7 +21,7 @@ client.on('voiceStateUpdate', function(oldMemberState, newMemberState){
 });
 
 client.on("message", async message => { 
-    if (message.author.id === '481979680061259786') { return; } // Ignore self
+    if (message.author.id === client.user.id) { return; } // Ignore self
     if (message.channel.type === 'dm') { return; } //Optionally handle direct messages 
     if (message.content.indexOf("<@"+client.user.id) === 0 || message.content.indexOf("<@!"+client.user.id) === 0) { // Catch @Mentions
         return message.channel.send(`Use \`${config.prefix}\` to interact with me.`); //help people learn your prefix
@@ -28,25 +31,19 @@ client.on("message", async message => {
         let args = msg.split(" "); // break the message into part by spaces
         let cmd = args[0].toLowerCase(); // set the first word as the command in lowercase just in case
         args.shift(); // delete the first word from the args
-        if (cmd === 'help') { 
-           message.channel.send(`-
-           HELP MESSAGE INCOMPLETE
-           -`);
-           return; 
+        else if (cmd === "eval" && message.author.id === config.owner){ // < checks the message author's id to yours in config.json.
+            const code = args.join(" ");
+            return evalCmd(message, code);
         }
         else if (cmd === 'ping') {
-            message.channel.send('pong');   
+            message.channel.send('ping');   
         }
-        else if (cmd === 'purge') {
-        // This command removes all messages from all users in the channel, up to 100.
-        
+        else if (cmd === 'purge') { // This command removes all messages from all users in the channel, up to 100.
         // get the delete count, as an actual number.
         const deleteCount = parseInt(args[0], 10);
-    
         // Ooooh nice, combined conditions. <3
         if(!deleteCount || deleteCount < 2 || deleteCount > 100)
             return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
-
         // So we get our messages, and delete them. Simple enough, right?
         const fetched = await message.channel.fetchMessages({limit: deleteCount});
         message.channel.bulkDelete(fetched)
