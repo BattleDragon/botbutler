@@ -2,6 +2,7 @@ global.util = require('util');
 global.config = require('./config.json');
 global.Discord = require('discord.js');
 global.client = new Discord.Client();
+global.safeEval = require('safe-eval')
 client.login(process.env.token);
 
 client.on('ready', () => {
@@ -39,10 +40,10 @@ client.on("message", async message => {
         }
         else if (cmd === 'purge') { // This command removes all messages from all users in the channel, up to 100.
             const deleteCount = parseInt(args[0], 10); // get the delete count, as an actual number.
-            if(!deleteCount || deleteCount < 2 || deleteCount > 100) // Ooooh nice, combined conditions. <3
-                return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
+            if(!deleteCount || deleteCount < 1 || deleteCount > 100) // Ooooh nice, combined conditions. <3
+                return message.reply("Please provide a number between 1 and 100 for the number of messages to delete");
             // So we get our messages, and delete them. Simple enough, right?
-            const fetched = await message.channel.fetchMessages({limit: deleteCount});
+            const fetched = await message.channel.fetchMessages({limit: deleteCount + 1});
             message.channel.bulkDelete(fetched)
                 .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
         }
@@ -56,13 +57,13 @@ client.on("message", async message => {
 function evalCmd(message, code) {
     if(message.author.id !== config.owner) return;
     try {
-        let evaled = eval(clean(code));
+        let evaled = safeEval(clean(code));
     } catch (err) {
-        message.channel.send(`\`\`\`xl\n${clean(err)}\n\`\`\``);
+        message.channel.send(`\`\`\`xl\n${util.inspect(err, { depth: 0 })}\n\`\`\``);
     }
 }
 
-function clean(text) {
+/*function clean(text) {
     if (typeof(text) !== 'string') {
         text = util.inspect(text, { depth: 0 });
     }
@@ -71,4 +72,4 @@ function clean(text) {
         .replace(/@/g, '@' + String.fromCharCode(8203))
         .replace(process.env.token, 'TOKEN') //Don't let it post your token
     return text;
-}
+}*/
