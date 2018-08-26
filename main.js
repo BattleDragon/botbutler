@@ -1,8 +1,7 @@
-global.util = require('util');
-global.config = require('config.json');
-global.Discord = require('discord.js');
-global.client = new Discord.Client();
-const functions = require('functions.js');
+const util = require('util');
+const config = require('config.json');
+const Discord = require('discord.js');
+const client = new Discord.Client();
 
 client.login(process.env.token);
 
