@@ -59,7 +59,7 @@ function evalCmd(message, code) {
         let evaled = eval(code);
         if (typeof evaled !== "string")
             evaled = util.inspect(evaled);
-//            message.channel.send(clean(evaled), {code:"xl"});
+            message.channel.send(clean(evaled)/*, {code:"xl"}*/);
     } catch (err) {
         message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     }
