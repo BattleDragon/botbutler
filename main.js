@@ -16,6 +16,4 @@ client.on('voiceStateUpdate', function(oldMemberState, newMemberState){
     }
 });
 
-client.on('message', message => {
-    message.channel.send("message.content")
-});
+
