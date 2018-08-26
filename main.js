@@ -56,7 +56,7 @@ client.on("message", async message => {
 function evalCmd(message, code) {
     if(message.author.id !== config.owner) return;
     try {
-        let evaled = eval(code);
+        let evaled = eval(clean(code));
     } catch (err) {
         message.channel.send(`\`\`\`xl\n${clean(err)}\n\`\`\``);
     }
