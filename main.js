@@ -3,7 +3,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const commands = require('commands.js');
 const util = require('util');
-client.login(process.env.token);
 
 bot.on("message", async message => { 
 if(message.author.id === '481979680061259786') return; // Ignore self
@@ -88,3 +87,5 @@ client.on('voiceStateUpdate', function(oldMemberState, newMemberState){
         newMemberState.removeRole('483014771818364948');
     }
 });
+
+client.login(process.env.token);
