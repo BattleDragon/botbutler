@@ -67,7 +67,7 @@ function evalCmd(message, code) {
 
 function clean(text) {
     if (typeof(text) !== 'string') {
-        text = util.inspect(text, { depth: 0 });
+        text = util.inspect(text/*, { depth: 0 }*/);
     }
     text = text
         .replace(/`/g, '`' + String.fromCharCode(8203))
