@@ -2,7 +2,6 @@ global.util = require('util');
 global.config = require('./config.json');
 global.Discord = require('discord.js');
 global.client = new Discord.Client();
-global.safeEval = require('safe-eval')
 client.login(process.env.token);
 
 client.on('ready', () => {
@@ -31,12 +30,13 @@ client.on("message", async message => {
         let cmd = args[0].toLowerCase(); // set the first word as the command in lowercase just in case
         args.shift(); // delete the first word from the args
         if (cmd === 'ping') {
-            message.channel.send(',ping');   
+            message.channel.send('pong!');   
             return;
         }
         else if (cmd === "eval" && message.author.id === config.owner) { // < checks the message author's id to yours in config.json.
-            const code = args.join(" ");
-            return evalCmd(message, code);
+            if(message.author.id !== config.owner) return;
+            try { let evaled = eval(args.join(" ")); } 
+            catch (err) { message.channel.send(`\`\`\`xl\n${err}\n\`\`\``); }
         }
         else if (cmd === 'purge') { // This command removes all messages from all users in the channel, up to 100.
             const deleteCount = parseInt(args[0], 10); // get the delete count, as an actual number.
@@ -57,19 +57,8 @@ client.on("message", async message => {
 function evalCmd(message, code) {
     if(message.author.id !== config.owner) return;
     try {
-        let evaled = safeEval(code);
+        let evaled = eval(code);
     } catch (err) {
         message.channel.send(`\`\`\`xl\n${err}\n\`\`\``);
     }
 }
-
-/*function clean(text) {   util.inspect(err, { depth: 0 })
-    if (typeof(text) !== 'string') {
-        text = util.inspect(text, { depth: 0 });
-    }
-    text = text
-        .replace(/`/g, '`' + String.fromCharCode(8203))
-        .replace(/@/g, '@' + String.fromCharCode(8203))
-        .replace(process.env.token, 'TOKEN') //Don't let it post your token
-    return text;
-}*/
