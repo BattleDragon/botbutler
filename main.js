@@ -7,7 +7,7 @@ client.login(process.env.token);
 client.on('ready', () => {
     client.user.setActivity('you...', {type: 'WATCHING'});
 });
-
+/*
 client.on('voiceStateUpdate', function(oldMemberState, newMemberState){
     if ((oldMemberState.voiceChannel == null) && (newMemberState.voiceChannel != oldMemberState.voiceChannel)){
         // If the member was previously not in a voice channel, and now is in one . . .
@@ -32,12 +32,12 @@ client.on("message", async message => {
         if (cmd === 'ping') {
             message.channel.send(',ping');   
             return;
-        }
+        }*/
 /*        else if (cmd === "eval" && message.author.id === config.owner) { // < checks the message author's id to yours in config.json.
             const code = args.join(" ");
             return functions.evalCmd(message, code);
         }*/
-        else if (cmd === 'purge') { // This command removes all messages from all users in the channel, up to 100.
+/*        else if (cmd === 'purge') { // This command removes all messages from all users in the channel, up to 100.
             const deleteCount = parseInt(args[0], 10); // get the delete count, as an actual number.
             if(!deleteCount || deleteCount < 2 || deleteCount > 100) // Ooooh nice, combined conditions. <3
                 return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
@@ -52,7 +52,7 @@ client.on("message", async message => {
         }
     }
 });
-
+*/
 /*function evalCmd(message, code) {
     if(message.author.id !== config.owner) return;
     try {
