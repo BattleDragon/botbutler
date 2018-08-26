@@ -1,5 +1,5 @@
 global.util = require('util');
-global.config = require('./config.json');
+global.config = require('config.json');
 global.Discord = require('discord.js');
 global.client = new Discord.Client();
 const functions = require('functions.js');
