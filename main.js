@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const commands = require('commands.js');
 const util = require('util');
-bot.on("message", async message => { 
+client.on("message", async message => { 
 if(message.author.id === '481979680061259786') { return; } // Ignore self
 if(message.channel.type === 'dm') { return; } //Optionally handle direct messages 
 if (message.content.indexOf(config.prefix) === 0) { // Message starts with your prefix        
@@ -33,7 +33,7 @@ if (message.content.indexOf(config.prefix) === 0) { // Message starts with your 
             message.channel.send(`I don't know what command that is.`);
             return;
         }
-    } else if (message.content.indexOf("<@"+bot.user.id) === 0 || message.content.indexOf("<@!"+bot.user.id) === 0) { // Catch @Mentions
+    } else if (message.content.indexOf("<@"+client.user.id) === 0 || message.content.indexOf("<@!"+client.user.id) === 0) { // Catch @Mentions
         return message.channel.send(`Use \`${config.prefix}\` to interact with me.`); //help people learn your prefix
     }
     return;
