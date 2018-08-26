@@ -16,4 +16,8 @@ client.on('voiceStateUpdate', function(oldMemberState, newMemberState){
     }
 });
 
-
+client.on('message', msg => {
+  if (msg.content.includes('ping')) {
+    msg.channel.send('pong');
+  }
+});
