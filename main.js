@@ -35,7 +35,7 @@ client.on("message", async message => {
         }
         else if (cmd === "eval" && message.author.id === config.owner) { // < checks the message author's id to yours in config.json.
             const code = args.join(" ");
-            return functions.evalCmd(message, code);
+            return evalCmd(message, code);
         }
         else if (cmd === 'purge') { // This command removes all messages from all users in the channel, up to 100.
             const deleteCount = parseInt(args[0], 10); // get the delete count, as an actual number.
