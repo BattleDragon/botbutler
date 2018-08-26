@@ -53,12 +53,3 @@ client.on("message", async message => {
         }
     }
 });
-
-function evalCmd(message, code) {
-    if(message.author.id !== config.owner) return;
-    try {
-        let evaled = eval(code);
-    } catch (err) {
-        message.channel.send(`\`\`\`xl\n${err}\n\`\`\``);
-    }
-}
