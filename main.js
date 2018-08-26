@@ -62,7 +62,7 @@ function evalCmd(message, code) {
             message.channel.send(clean(evaled), {code:"xl"});
     } catch (err) {
         message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-        
+        message.channel.send('hi');
     }
 }
 
