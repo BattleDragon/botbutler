@@ -34,9 +34,9 @@ client.on("message", async message => {
         if (cmd === 'ping') {
             message.channel.send(',ping');   
         }
-        else if (cmd === "eval" && message.author.id === config.owner){ // < checks the message author's id to yours in config.json.
+        else if (cmd === "eval" && message.author.id === config.owner) { // < checks the message author's id to yours in config.json.
             const code = args.join(" ");
-            return evalCmd(message, code);
+            return functions.evalCmd(message, code);
         }
         else if (cmd === 'purge') { // This command removes all messages from all users in the channel, up to 100.
             // get the delete count, as an actual number.
