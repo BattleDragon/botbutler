@@ -56,13 +56,23 @@ client.on("message", async message => {
 function evalCmd(message, code) {
     if(message.author.id !== config.owner) return;
     try {
+        eval(code); 
+    } catch (e) {
+        if (e instanceof SyntaxError) {
+            message.channel.send(e.message);
+        }
+    }
+/*
+    
+    try {
         let evaled = eval(code);
         if (typeof evaled !== "string")
             evaled = util.inspect(evaled);
             message.channel.send(clean(evaled), {code:"xl"});
     } catch (err) {
         message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
-    }
+        
+    }*/
 }
 
 function clean(text) {
