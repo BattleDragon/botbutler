@@ -34,11 +34,12 @@ client.on("message", async message => {
            -`);
            return; 
         }
+        else if (cmd === 'ping') {
+            message.channel.send('pong');   
+        }
         else { // if the command doesn't match anything you can say something or just ignore it
             message.channel.send(`I don't know what command that is.`);
             return;
         }
-    } else 
     }
-    return;
 });
