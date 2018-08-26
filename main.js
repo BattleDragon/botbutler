@@ -3,9 +3,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const commands = require('commands.js');
 const util = require('util');
-
 bot.on("message", async message => { 
-if(message.author.id === '481979680061259786') return; // Ignore self
+if(message.author.id === '481979680061259786') { return; } // Ignore self
 if(message.channel.type === 'dm') { return; } //Optionally handle direct messages 
 if (message.content.indexOf(config.prefix) === 0) { // Message starts with your prefix        
     let msg = message.content.slice(config.prefix.length); // slice of the prefix on the message
