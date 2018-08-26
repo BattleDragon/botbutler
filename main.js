@@ -57,13 +57,13 @@ client.on("message", async message => {
 function evalCmd(message, code) {
     if(message.author.id !== config.owner) return;
     try {
-        let evaled = safeEval(clean(code));
+        let evaled = safeEval(code);
     } catch (err) {
-        message.channel.send(`\`\`\`xl\n${util.inspect(err, { depth: 0 })}\n\`\`\``);
+        message.channel.send(`\`\`\`xl\n${err}\n\`\`\``);
     }
 }
 
-/*function clean(text) {
+/*function clean(text) {   util.inspect(err, { depth: 0 })
     if (typeof(text) !== 'string') {
         text = util.inspect(text, { depth: 0 });
     }
