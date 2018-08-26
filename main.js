@@ -1,4 +1,4 @@
-const util = require('util');
+// const util = require('util'); 
 const config = require('config.json');
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -32,10 +32,10 @@ client.on("message", async message => {
         if (cmd === 'ping') {
             message.channel.send(',ping');   
         }
-        else if (cmd === "eval" && message.author.id === config.owner) { // < checks the message author's id to yours in config.json.
+/*        else if (cmd === "eval" && message.author.id === config.owner) { // < checks the message author's id to yours in config.json.
             const code = args.join(" ");
             return functions.evalCmd(message, code);
-        }
+        }*/
         else if (cmd === 'purge') { // This command removes all messages from all users in the channel, up to 100.
             // get the delete count, as an actual number.
             const deleteCount = parseInt(args[0], 10);
@@ -54,7 +54,7 @@ client.on("message", async message => {
     }
 });
 
-function evalCmd(message, code) {
+/*function evalCmd(message, code) {
     if(message.author.id !== config.owner) return;
     try {
         let evaled = eval(code);
@@ -75,4 +75,4 @@ function clean(text) {
         .replace(/@/g, '@' + String.fromCharCode(8203))
         .replace(config.token, 'mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0') //Don't let it post your token
     return text;
-}
+}*/
