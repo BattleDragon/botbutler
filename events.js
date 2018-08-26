@@ -1,8 +1,8 @@
-client.on('ready', () => {
-    client.user.setActivity('you...', {type: 'WATCHING'});
+global.client.on('ready', () => {
+    global.client.user.setActivity('you...', {type: 'WATCHING'});
 });
 
-client.on('voiceStateUpdate', function(oldMemberState, newMemberState){
+global.client.on('voiceStateUpdate', function(oldMemberState, newMemberState){
     if ((oldMemberState.voiceChannel == null) && (newMemberState.voiceChannel != oldMemberState.voiceChannel)){
         // If the member was previously not in a voice channel, and now is in one . . .
         newMemberState.addRole('483014771818364948');
