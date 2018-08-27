@@ -17,12 +17,11 @@ client.on("message", async message => {
         args.shift(); // delete the first word from the args
         if (cmd === 'ping') { message.channel.send('pong!'); }
         else if (cmd === 'source') { message.channel.send('https://discord.js.org/#/docs/main/stable/general/welcome'); }
-        else if (cmd === "eval" && message.author.id === config.owner) { // < checks the message author's id to yours in config.json.
-            if(message.author.id !== config.owner) return;
+        else if (cmd === "eval" && message.author.id === config.owner) { // < checks the message author's id is yours in config.json.
             try { let evaled = eval(args.join(" ")); } 
             catch (err) { message.channel.send(`\`\`\`xl\n${err}\n\`\`\``); }
         }
-        else if (cmd === 'purge') { // This command removes all messages from all users in the channel, up to 100.
+        else if (cmd === 'purge' && message.author.id === config.owner) { // This command removes all messages from all users in the channel, up to 100.
             const deleteCount = parseInt(args[0], 10); // get the delete count, as an actual number.
             if(!deleteCount || deleteCount < 1 || deleteCount > 100) // Ooooh nice, combined conditions. <3
                 return message.reply("Please provide a number between 1 and 100 for the number of messages to delete");
