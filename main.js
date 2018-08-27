@@ -16,7 +16,7 @@ client.on("message", async message => {
         let cmd = args[0].toLowerCase(); // set the first word as the command in lowercase just in case
         args.shift(); // delete the first word from the args
         if (cmd === 'ping') { message.channel.send('pong!'); }
-        if (cmd === 'source') { message.channel.send('https://discord.js.org/#/docs/main/stable/general/welcome'); }
+        else if (cmd === 'source') { message.channel.send('https://discord.js.org/#/docs/main/stable/general/welcome'); }
         else if (cmd === "eval" && message.author.id === config.owner) { // < checks the message author's id to yours in config.json.
             if(message.author.id !== config.owner) return;
             try { let evaled = eval(args.join(" ")); } 
