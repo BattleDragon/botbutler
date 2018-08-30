@@ -1,25 +1,5 @@
 const config = require('./config.json');
 const Discord = require('discord.js');
-
-//--------------------------- D A T A B A S E ---------------------------
-const { postgresClient } = require('pg');
-
-const dbclient = new postgresClient({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
-
-dbclient.connect();
-
-dbclient.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  dbclient.end();
-});
-
-//--------------------------- D I S C O R D - C L I E N T ---------------------------
 const client = new Discord.Client();
 client.login(process.env.token);
 
