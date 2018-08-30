@@ -1,7 +1,5 @@
 const config = require('./config.json');
 const Discord = require('discord.js');
-const client = new Discord.Client();
-client.login(process.env.token);
 
 //--------------------------- D A T A B A S E ---------------------------
 const { postgresClient } = require('pg');
@@ -20,6 +18,10 @@ dbclient.query('SELECT table_schema,table_name FROM information_schema.tables;',
   }
   dbclient.end();
 });
+
+//--------------------------- D I S C O R D - C L I E N T ---------------------------
+const client = new Discord.Client();
+client.login(process.env.token);
 
 //--------------------------- C O M M A N D S ---------------------------
 client.on("message", async message => { 
