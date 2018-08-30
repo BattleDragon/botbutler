@@ -3,6 +3,24 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 client.login(process.env.token);
 
+//--------------------------- D A T A B A S E ---------------------------
+const { postgresClient } = require('pg');
+
+const dbclient = new postgresClient({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
+
+dbclient.connect();
+
+dbclient.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  dbclient.end();
+});
+
 //--------------------------- C O M M A N D S ---------------------------
 client.on("message", async message => { 
     if (message.author.id === client.user.id) { return; } // Ignore self
